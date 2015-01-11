@@ -33,5 +33,5 @@ func ReadExt2Superblock(devPath string) (*Ext2Sb, error) {
 		sbErr := fmt.Errorf("Bad magic number for %s", devPath)
 		return nil, err
 	}
-	return sb, nil
+	return &sb, nil
 }
