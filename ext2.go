@@ -31,8 +31,8 @@ type Ext2Sb struct {
 	SFeatureIncompat int32
 	SFeatureROCompat int32
 	SUUID [16]byte
-	SVolumeName [16]char
-	SLastMounted [64]char
+	SVolumeName [16]byte
+	SLastMounted [64]byte
 	SAlgorithmUsageBitmap int32
 	SPreallocBlocks uint8
 	SPreallocDirBlocks uint8
@@ -68,15 +68,15 @@ type Ext2Sb struct {
 	SSnapshotList int32
 	SErrorCount int32
 	SFirstErrorTime int32
-	SFirstErrorIno
+	SFirstErrorIno int32
 	SFirstErrorBlock int64
-	SFirstErrorFunc [32]char
+	SFirstErrorFunc [32]byte
 	SFirstErrorLine int32
-	SLastErrorLine int32
+	SLastErrorTime int32
 	SLastErrorIno int32
 	SLastErrorLine int32
 	SLastErrorBlock int64
-	SLastErrorFunc [32]char
+	SLastErrorFunc [32]byte
 	SMountOpts [64]byte
 	SUsrQuotaInum int32
 	SGrpQuotaInum int32
