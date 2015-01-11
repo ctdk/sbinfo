@@ -1,87 +1,87 @@
 type Ext2Sb struct {
-	SInodesCount int32
-	SBlocksCount int32
-	SRBlocksCount int32
-	SFreeBlocksCount int32
-	SFreeInodesCount int32
-	SFirstDataBlock int32
-	SLogBlockSize int32
-	SLogClusterSize int32
-	SBlocksPerGroup int32
-	SClustersPerGroup int32
-	SInodesPerGroup int32
-	SMtime int32
-	SWtime int32
-	SMntCount int16
-	SMaxMntCount int16
-	SMagic int16
-	SState int16
-	SErrors int16
-	SMinorRevLevel int16
-	SLastcheck int32
-	SCheckinterval int32
-	SCreatorOs int32
-	SRevLevel int32
-	SDefResUID int16
-	SDefResGID int16
-	SFirstIno int32
-	SInodeSize int16
-	SBlockGroupNr int16
-	SFeatureCompat int32
-	SFeatureIncompat int32
-	SFeatureROCompat int32
+	SInodesCount uint32
+	SBlocksCount uint32
+	SRBlocksCount uint32
+	SFreeBlocksCount uint32
+	SFreeInodesCount uint32
+	SFirstDataBlock uint32
+	SLogBlockSize uint32
+	SLogClusterSize uint32
+	SBlocksPerGroup uint32
+	SClustersPerGroup uint32
+	SInodesPerGroup uint32
+	SMtime uint32
+	SWtime uint32
+	SMntCount uint16
+	SMaxMntCount uint16
+	SMagic uint16
+	SState uint16
+	SErrors uint16
+	SMinorRevLevel uint16
+	SLastcheck uint32
+	SCheckinterval uint32
+	SCreatorOs uint32
+	SRevLevel uint32
+	SDefResUID uint16
+	SDefResGID uint16
+	SFirstIno uint32
+	SInodeSize uint16
+	SBlockGroupNr uint16
+	SFeatureCompat uint32
+	SFeatureIncompat uint32
+	SFeatureROCompat uint32
 	SUUID [16]byte
 	SVolumeName [16]byte
 	SLastMounted [64]byte
-	SAlgorithmUsageBitmap int32
+	SAlgorithmUsageBitmap uint32
 	SPreallocBlocks uint8
 	SPreallocDirBlocks uint8
-	SReservedGdtBlocks int16
+	SReservedGdtBlocks uint16
 	SJournalUUID [16]byte
-	SJournalInum int32
-	SJournalDev int32
-	SLastOrphan int32
-	SHashSeed [4]int32
+	SJournalInum uint32
+	SJournalDev uint32
+	SLastOrphan uint32
+	SHashSeed [4]uint32
 	SDefHashVersion byte
 	SJnlBackupType byte
-	SDefaultMountOpts int32
-	SFirstMetaBg int32
-	SMkfsTime int32
-	SJnlBlocks [17]int32
-	SBlocksCountHi int32
-	SRBlocksCountHi int32
-	SFreeBlocksCountHi int32
-	SMinExtraIsize int16
-	SWantExtraIsize int16
-	SFlags int32
-	SRaidStride int16
-	SMmpInterval int16
-	SMmpBlock int64
-	SRaidStripeWidth int32
+	SDefaultMountOpts uint32
+	SFirstMetaBg uint32
+	SMkfsTime uint32
+	SJnlBlocks [17]uint32
+	SBlocksCountHi uint32
+	SRBlocksCountHi uint32
+	SFreeBlocksCountHi uint32
+	SMinExtraIsize uint16
+	SWantExtraIsize uint16
+	SFlags uint32
+	SRaidStride uint16
+	SMmpInterval uint16
+	SMmpBlock uint64
+	SRaidStripeWidth uint32
 	SLogGroupsPerFlex byte
 	SChecksumType byte
-	SReservedPad int16
-	SKbytesWritten int64
-	SSnapshotInum int32
-	SSnapshotId int32
-	SSnapshotRBlocksCount int64
-	SSnapshotList int32
-	SErrorCount int32
-	SFirstErrorTime int32
-	SFirstErrorIno int32
-	SFirstErrorBlock int64
+	SReservedPad uint16
+	SKbytesWritten uint64
+	SSnapshotInum uint32
+	SSnapshotId uint32
+	SSnapshotRBlocksCount uint64
+	SSnapshotList uint32
+	SErrorCount uint32
+	SFirstErrorTime uint32
+	SFirstErrorIno uint32
+	SFirstErrorBlock uint64
 	SFirstErrorFunc [32]byte
-	SFirstErrorLine int32
-	SLastErrorTime int32
-	SLastErrorIno int32
-	SLastErrorLine int32
-	SLastErrorBlock int64
+	SFirstErrorLine uint32
+	SLastErrorTime uint32
+	SLastErrorIno uint32
+	SLastErrorLine uint32
+	SLastErrorBlock uint64
 	SLastErrorFunc [32]byte
 	SMountOpts [64]byte
-	SUsrQuotaInum int32
-	SGrpQuotaInum int32
-	SOverheadBlocks int32
-	SBackupBgs [2]int32
-	SReserved [106]int32
-	SChecksum int32
+	SUsrQuotaInum uint32
+	SGrpQuotaInum uint32
+	SOverheadBlocks uint32
+	SBackupBgs [2]uint32
+	SReserved [106]uint32
+	SChecksum uint32
 }
