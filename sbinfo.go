@@ -8,7 +8,7 @@ import (
 	"unsafe"
 )
 
-const ext2Magic int16 = 0xef53
+const ext2Magic uint16 = 0xef53
 
 // ReadExt2Superblock reads the superblock from the given device or file and
 // returns a struct representing the superblock, or an error on failure.
