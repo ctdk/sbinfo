@@ -1,3 +1,6 @@
+package sbinfo
+
+// Ext2Sb represents an ext2/3/4 superblock.
 type Ext2Sb struct {
 	SInodesCount uint32
 	SBlocksCount uint32
