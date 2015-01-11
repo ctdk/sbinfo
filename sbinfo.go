@@ -29,6 +29,8 @@ func ReadExt2Superblock(devPath string) (*Ext2Sb, error) {
 	}
 	sbRaw := buf[1024:]
 	sb := *(*Ext2Sb)(unsafe.Pointer(&sbRaw[0]))
+	// This needs to be able to check if it's running on a bigendian system
+	// and switch up the sb values as needed.
 	if sb.SMagic != ext2Magic {
 		sbErr := fmt.Errorf("Bad magic number for %s", devPath)
 		return nil, sbErr
