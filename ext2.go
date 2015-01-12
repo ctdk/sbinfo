@@ -32,7 +32,7 @@ type Ext2Sb struct {
 	SBlockGroupNr         uint16
 	SFeatureCompat        uint32
 	SFeatureIncompat      uint32
-	SFeatureRO_Compat      uint32
+	SFeatureROCompat      uint32
 	SUUID                 [16]byte
 	SVolumeName           [16]byte
 	SLastMounted          [64]byte
@@ -108,30 +108,46 @@ const (
 	EXT4_FEATURE_INCOMPAT_FLEX_BG      uint32 = 0x0200
 )
 
+const EXT2_FEATURE_RO_COMPAT_SUPP uint32 = EXT2_FEATURE_RO_COMPAT_SPARSE_SUPER | EXT2_FEATURE_RO_COMPAT_LARGE_FILE | EXT2_FEATURE_RO_COMPAT_BTREE_DIR
 const EXT2_FEATURE_INCOMPAT_SUPP uint32 = EXT2_FEATURE_INCOMPAT_FILETYPE | EXT2_FEATURE_INCOMPAT_META_BG
+const EXT2_FEATURE_RO_COMPAT_UNSUPPORTED uint32 = ^EXT2_FEATURE_RO_COMPAT_SUPP
 const EXT2_FEATURE_INCOMPAT_UNSUPPORTED uint32 = ^EXT2_FEATURE_INCOMPAT_SUPP
+const EXT3_FEATURE_RO_COMPAT_SUPP uint32 = EXT2_FEATURE_RO_COMPAT_SPARSE_SUPER |  EXT2_FEATURE_RO_COMPAT_LARGE_FILE | EXT2_FEATURE_RO_COMPAT_BTREE_DIR
 const EXT3_FEATURE_INCOMPAT_SUPP uint32 = EXT2_FEATURE_INCOMPAT_SUPP | EXT3_FEATURE_INCOMPAT_RECOVER
+const EXT3_FEATURE_RO_COMPAT_UNSUPPORTED uint32 = ^EXT3_FEATURE_RO_COMPAT_SUPP
 const EXT3_FEATURE_INCOMPAT_UNSUPPORTED uint32 = ^EXT3_FEATURE_INCOMPAT_SUPP
 
 func (sb *Ext2Sb) IsExt4() bool {
 	ext3 := sb.SFeatureIncompat & EXT3_FEATURE_INCOMPAT_UNSUPPORTED
 	ext2 := sb.SFeatureIncompat & EXT2_FEATURE_INCOMPAT_UNSUPPORTED
-	if ext3 == 0 && ext2 == 0 {
+	if ext3 > 0 && ext2 > 0 {
 		return true
 	}
 	return false
 }
 
 func (sb *Ext2Sb) IsExt3() bool {
-	z := sb.SFeatureIncompat & EXT3_FEATURE_INCOMPAT_SUPP
-	if z > 0 {
+	j := sb.SFeatureCompat & EXT3_FEATURE_COMPAT_HAS_JOURNAL
+	if j == 0 {
+		return false
+	}
+	y := sb.SFeatureROCompat & EXT3_FEATURE_RO_COMPAT_UNSUPPORTED
+	z := sb.SFeatureIncompat & EXT3_FEATURE_INCOMPAT_UNSUPPORTED
+	
+	if z == 0 && y == 0{
 		return true
 	}
 	return false
 }
 
 func (sb *Ext2Sb) IsExt2() bool {
-	if !sb.IsExt4() && !sb.IsExt3() {
+	j := sb.SFeatureCompat & EXT3_FEATURE_COMPAT_HAS_JOURNAL
+	if j > 0 {
+		return false
+	}
+	y := sb.SFeatureROCompat & EXT2_FEATURE_RO_COMPAT_UNSUPPORTED
+	z := sb.SFeatureIncompat & EXT2_FEATURE_INCOMPAT_UNSUPPORTED
+	if z == 0 && y == 0 {
 		return true
 	}
 	return false
